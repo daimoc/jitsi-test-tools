@@ -30,7 +30,6 @@ echo -n ";"
 echo -n `sudo netstat -putan |grep lua |wc -l`
 echo -n ";"
 
-grep -q "^$network:" /proc/net/network || exec echo "$network: no such networkice"
 delta=$((newtimestamp - timestamp))
 # convert bytes to kbit/s: bytes * 8 / 1000 => bytes / 125
 echo -n "$(( ((newrx-rx) * 8 * 1000 ) / delta  ));$(( ( (newtx-tx) * 8 *1000 ) / delta ))"

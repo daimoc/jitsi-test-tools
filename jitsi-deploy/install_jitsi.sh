@@ -10,12 +10,16 @@ JITSI_BASENAME=$1
 echo 'deb https://download.jitsi.org stable/' >> /etc/apt/sources.list.d/jitsi-stable.list
 wget -qO -  https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
 
-sudo apt -y install debconf-utils
+sudo apt -y install debconf-utils certbot
 echo "jitsi-videobridge jitsi-videobridge/jvb-hostname string $JITSI_BASENAME" | debconf-set-selections
-echo "jitsi-meet jitsi-meet/cert-choice select Self-signed certificate will be generated" | debconf-set-selections
+#echo "jitsi-meet jitsi-meet/cert-choice select Self-signed certificate will be generated" | debconf-set-selections
 
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 
 apt-get -y install nginx jitsi-meet
+
+
+# INdstall letsencrupt certificat
+/usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh

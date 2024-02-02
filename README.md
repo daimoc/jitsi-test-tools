@@ -11,6 +11,10 @@ Usage
 
 Bash script to record cpu activity and networks of the Jitsi process
 
+Require net-tools in Ubunut 22
+
+apt install net-tools
+
 ## gst-meet-test
 
 Some scripts to generate Jitsi-Meet load test with gst-Meet.
