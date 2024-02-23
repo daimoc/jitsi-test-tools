@@ -18,4 +18,6 @@ apt install net-tools
 ## gst-meet-test
 
 Some scripts to generate Jitsi-Meet load test with gst-Meet.
+It only work with xmmp colibri and ws-colibri configured on Jitsi servers.
+
 You need docker to run it.
