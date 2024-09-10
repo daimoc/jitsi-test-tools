@@ -21,5 +21,17 @@ apt-get update
 apt-get -y install nginx jitsi-meet
 
 
-# INdstall letsencrupt certificat
+# Enable XMPP Websocket configuration
+
+sed -i 's/"room_metadata";/"room_metadata";"websocket";/g' /etc/prosody/conf.avail/jitsi.dev.cfg.lua 
+sed -i "/c2s_require_encryption = false/a \    cross_domain_websocket = { \"https://$JITSI_BASENAME\" };" /etc/prosody/conf.avail/jitsi.dev.cfg.lua 
+sed -i 's|// websocket:|websocket:|g' /etc/jitsi/meet/jitsi.dev-config.js
+
+service prosody restart
+
+# Install let's Encrypt certificat
+
 /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
+
+
+

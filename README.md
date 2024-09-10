@@ -5,15 +5,14 @@ Some basic tools to help deploy and quickly test Jitsi-Meet server
 
 Bash script to install jitsi-meet
 Usage 
-> install_jitsi.sh [server_name]
+```> install_jitsi.sh [server_name]```
 
 ## Monitor directory
 
 Bash script to record cpu activity and networks of the Jitsi process
 
 Require net-tools in Ubunut 22
-
-apt install net-tools
+```apt install net-tools```
 
 ## gst-meet-test
 

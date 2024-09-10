@@ -20,7 +20,7 @@ top -b -n1 -o PID > tmp_cpu.txt
 echo -n `date +'%Y-%m-%d %H:%M:%S'`
 echo -n ";"
 grep jvb tmp_cpu.txt |awk '{printf $9";"}'
-echo -n `curl -s -XGET http://127.0.0.1:8080/colibri/stats | jq '.endpoints'`
+echo -n `curl -s -XGET http://127.0.0.1:8080/metrics | jq '.endpoints'`
 echo -n ";"
 grep -q "^$dev:" /proc/net/dev || exec echo "$dev: no such device"
 delta=$((newtimestamp - timestamp))
