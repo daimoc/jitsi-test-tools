@@ -1,5 +1,5 @@
 #!/bin/sh
-dev="enp0s8"
+network=$1 #"enp0s8"
 
 read rx <"/sys/class/net/$dev/statistics/rx_bytes"
 read tx <"/sys/class/net/$dev/statistics/tx_bytes"

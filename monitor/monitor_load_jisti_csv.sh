@@ -4,7 +4,7 @@ network=$1 #"enp0s8"
 read rx <"/sys/class/net/$network/statistics/rx_bytes"
 read tx <"/sys/class/net/$network/statistics/tx_bytes"
 
-echo "TIME;CPU_Prosody;CPU_NGINX_MASTER;CPU_NGINX_WORKER_1;CPU_NGINX_WORKER_2;CPU_NGINX_WORKER_3;CPU_NGINX_WORKER_4;CPU_JICOFO;CPu_JVB;SOCKET_NGINX;SOCKET_LUA;rx,tx"
+echo "TIME;CPU_Prosody;CPU_NGINX_MASTER;CPU_NGINX_WORKER_1;CPU_NGINX_WORKER_2;CPU_NGINX_WORKER_3;CPU_NGINX_WORKER_4;CPU_JICOFO;CPU_JVB;SOCKET_NGINX;SOCKET_LUA;rx,tx"
 
 
 while :
@@ -26,9 +26,9 @@ grep nginx tmp_cpu.txt|grep root |awk '{printf $9";"}'
 grep nginx tmp_cpu.txt|grep www-data |awk '{printf $9";"}'
 grep jicofo tmp_cpu.txt |awk '{printf $9";"}'
 grep jvb tmp_cpu.txt |awk '{printf $9";"}'
-echo -n `sudo netstat -putan |grep nginx |wc -l`
+echo -n `sudo ss -putan |grep nginx |wc -l`
 echo -n ";"
-echo -n `sudo netstat -putan |grep lua |wc -l`
+echo -n `sudo ss -putan |grep lua |wc -l`
 echo -n ";"
 
 delta=$((newtimestamp - timestamp))
