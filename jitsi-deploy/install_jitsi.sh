@@ -1,6 +1,7 @@
 #!/bin/sh
 
 JITSI_BASENAME=$1
+EMAIL=$2
 
 #Get last Prosody
 #echo deb http://packages.prosody.im/debian $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list
@@ -23,15 +24,15 @@ apt-get -y install nginx jitsi-meet
 
 # Enable XMPP Websocket configuration
 
-sed -i 's/"room_metadata";/"room_metadata";"websocket";/g' /etc/prosody/conf.avail/jitsi.dev.cfg.lua 
-sed -i "/c2s_require_encryption = false/a \    cross_domain_websocket = { \"https://$JITSI_BASENAME\" };" /etc/prosody/conf.avail/jitsi.dev.cfg.lua 
-sed -i 's|// websocket:|websocket:|g' /etc/jitsi/meet/jitsi.dev-config.js
+sed -i 's/"room_metadata";/"room_metadata";"websocket";/g' /etc/prosody/conf.avail/$JITSI_BASENAME.cfg.lua 
+sed -i "/c2s_require_encryption = false/a \    cross_domain_websocket = { \"https://$JITSI_BASENAME\" };" /etc/prosody/conf.avail/$JITSI_BASENAME.cfg.lua 
+sed -i 's|// websocket:|websocket:|g' /etc/jitsi/meet/$JITSI_BASENAME-config.js
 
 service prosody restart
 
 # Install let's Encrypt certificat
 
-/usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
+/usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh $EMAIL
 
 
 
